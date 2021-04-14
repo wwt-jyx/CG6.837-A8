@@ -118,12 +118,18 @@ void GLCanvas::mouse(int button, int state, int i, int j) {
     if (button == GLUT_LEFT_BUTTON) {
         Spline *s;
         int pt;
+
         // find the closest control point
         splines->Pick(x,y,epsilon,s,pt);
+
         if (s == NULL) return;
         s->moveControlPoint(pt,x,y);
         selected_spline = s;
-        selected_control_point = pt; }
+        selected_control_point = pt;
+
+
+
+    }
 
     // add control point
     if (button == GLUT_MIDDLE_BUTTON) {

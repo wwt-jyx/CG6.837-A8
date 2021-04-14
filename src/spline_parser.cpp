@@ -20,7 +20,7 @@ SplineParser::SplineParser(const char *spline_file) {
     getToken(token);
     assert (!strcmp(token,"num_splines"));
     num_splines = readInt();
-    splines = new (Spline*)[num_splines];
+    splines = new Spline* [num_splines];
 
     // read the splines
     for (int i = 0; i < num_splines; i++) {
@@ -125,14 +125,18 @@ void SplineParser::Pick(float x, float y, float epsilon,
                         Spline*& selected_curve, int &selected_control_point) {
     selected_curve = NULL;
     float distance = epsilon;
+
+
     // iterate through all the splines
     for (int i = 0; i < num_splines; i++) {
         Spline *s = getSpline(i);
+
         for (int j = 0; j < s->getNumVertices(); j++) {
             Vec3f v = s->getVertex(j);
             float dx = v.x()-x;
             float dy = v.y()-y;
             float d = sqrt(dx*dx+dy*dy);
+
             // keep the closest point (as long as it's within epsilon)
             if (d < distance) {
                 selected_curve = s;

@@ -5,12 +5,13 @@ using namespace std;
 #include "arg_parser.h"
 #include "glCanvas.h"
 #include "spline_parser.h"
+#include <GL/freeglut.h>
 
 // ====================================================================
 // ====================================================================
 
 int main(int argc, char *argv[]) {
-
+    glutInit(&argc, argv);
     // parse the command line arguments & input file
     ArgParser *args = new ArgParser(argc,argv);
     SplineParser* splines = new SplineParser(args->input_file);
